@@ -184,6 +184,39 @@ class device(object):
         self._buffer.insert(0, 0)
         if redraw:
             self.flush()
+            
+    def scrollMessage(self, text, font=None):
+        """
+        Transitions the text message across the devices from left-to-right
+        """
+        if not font:
+            font = DEFAULT_FONT
+
+        src = (value for asciiCode in text for value in font[ord(asciiCode)])
+        for value in src:
+            time.sleep(0.05)
+            self.scroll_left(redraw=False)
+            self._buffer[-1] = value
+            self.flush()
+
+    def displayMessage(self, text, font=None, delay=0.05):
+      """
+      Write the text message across the devices from left-to-right
+      """
+      if not font:
+          font = DEFAULT_FONT
+
+      src = (value for asciiCode in text for value in font[ord(asciiCode)])
+      i = 0
+      for value in src:
+          time.sleep(delay)
+          #self.scroll_left(redraw=False)
+          if i < len(self._buffer):
+              self._buffer[i] = value
+              self.flush()
+              i += 1
+
+
 
 
 class sevensegment(device):
