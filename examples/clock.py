@@ -18,15 +18,15 @@ device = led.matrix(cascaded=4)
 
 device.brightness(2)
 
-device.scrollMessage("Clock ", font=proportional(CP437_FONT))
-device.scrollMessage(get_ip_address(), font=proportional(CP437KZ_FONT))
+device.scrollMessage("Clock 1.1 ", font=proportional(LCD_FONT))
+device.scrollMessage(get_ip_address(), font=proportional(LCD_FONT))
 
 time.sleep(1)
 device.brightness(0)
 
 while 1:
-  str = datetime.datetime.now().strftime('%H:%M')
-  device.displayMessage(str, font=proportional(CP437KZ_FONT), delay=0.1)
+  str = datetime.datetime.now().strftime('%H:%M  ')
+  device.displayMessage(str, font=proportional(LCD_FONT), delay=0.06)
   #device.show_message(str, font=proportional(SINCLAIR_FONT))
   time.sleep(10)
 
