@@ -14,7 +14,7 @@ def get_ip_address():
     s.connect(("8.8.8.8", 80))
     return s.getsockname()[0]
 
-device = matrix(cascaded=4)
+device = led.matrix(cascaded=4)
 
 device.brightness(2)
 
